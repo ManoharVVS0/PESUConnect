@@ -1,10 +1,3 @@
--- Set a new delimiter so we can use ; inside our logic
-DELIMITER //
-
--- =============================================================================
--- SECTION 1: TABLE CREATION (Corrected Schema)
--- =============================================================================
-
 CREATE TABLE Student (
     student_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -82,9 +75,7 @@ CREATE TABLE Student_Skill (
     FOREIGN KEY (skill_id) REFERENCES Skill(skill_id) ON DELETE CASCADE
 );
 
--- =============================================================================
--- SECTION 2: TRIGGERS (Automated Actions & Validation)
--- =============================================================================
+DELIMITER //
 
 CREATE TRIGGER trg_Validate_PESU_Email
 BEFORE INSERT ON Student
@@ -200,10 +191,6 @@ BEGIN
         SET MESSAGE_TEXT = 'Error: Payment amount must be greater than zero.';
     END IF;
 END //
-
--- =============================================================================
--- SECTION 3: PROCEDURES (Complex Actions & Business Logic)
--- =============================================================================
 
 -- Purpose: Securely logs in a student.
 CREATE PROCEDURE sp_StudentLogin(
@@ -379,10 +366,6 @@ BEGIN
     END IF;
 END //
 
--- =============================================================================
--- SECTION 4: FUNCTIONS (Reusable Calculations)
--- =============================================================================
-
 CREATE FUNCTION fn_GetStudentAverageRating(in_student_id INT)
 RETURNS DECIMAL(3, 2)
 DETERMINISTIC
@@ -417,7 +400,4 @@ BEGIN
     RETURN v_app_count;
 END //
 
--- =============================================================================
--- Reset the delimiter back to default
--- =============================================================================
 DELIMITER ;
