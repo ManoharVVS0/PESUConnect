@@ -29,10 +29,7 @@ else:
         'database': os.environ.get('DB_NAME'),
         'ssl_disabled': True # <-- NEW: Let's try disabling SSL
     }
-# ------------------------------
 
-# --- DATABASE CONNECTION ---
-# @st.cache_resource # <-- Removed cache to force fresh connections
 def connect_to_db():
     """Establishes a connection to the database."""
     try:
