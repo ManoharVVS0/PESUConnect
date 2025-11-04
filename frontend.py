@@ -26,6 +26,16 @@ else:
         'password': os.environ.get('DB_PASSWORD'),
         'database': os.environ.get('DB_NAME')
     }
+    
+@st.cache_resource
+def connect_to_db():
+    """Establishes a connection to the database."""
+    try:
+        conn = mysql.connector.connect(**DB_CONFIG)
+        return conn
+    except mysql.connector.Error as err:
+        st.error(f"Error connecting to database: {err}")
+        return None
 
 def db_student_login(conn, email, password):
     """Handles the student login process."""
