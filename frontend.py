@@ -13,23 +13,21 @@ if 'DB_HOST' in st.secrets:
     # Use secrets from Streamlit
     DB_CONFIG = {
         'host': st.secrets.get('DB_HOST'),
-        'port': st.secrets.get('DB_PORT'),  # <-- Includes your Port fix
+        'port': st.secrets.get('DB_PORT'),
         'user': st.secrets.get('DB_USER'),
         'password': st.secrets.get('DB_PASSWORD'),
         'database': st.secrets.get('DB_NAME'),
-        'ssl_verify_cert': False, # <-- THIS IS THE FIX
-        'ssl_disabled': False
+        'ssl_disabled': True # <-- NEW: Let's try disabling SSL
     }
 else:
     # Use .env file (for local development)
     DB_CONFIG = {
         'host': os.environ.get('DB_HOST'),
-        'port': os.environ.get('DB_PORT'), # <-- Includes your Port fix
+        'port': os.environ.get('DB_PORT'),
         'user': os.environ.get('DB_USER'),
         'password': os.environ.get('DB_PASSWORD'),
         'database': os.environ.get('DB_NAME'),
-        'ssl_verify_cert': False, # <-- THIS IS THE FIX
-        'ssl_disabled': False
+        'ssl_disabled': True # <-- NEW: Let's try disabling SSL
     }
 # ------------------------------
 
