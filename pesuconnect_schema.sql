@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS pesuConnect;
 CREATE DATABASE IF NOT EXISTS pesuConnect;
 USE pesuConnect;
 
